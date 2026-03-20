@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, MessageSquare, Send } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const Contact = ({ onOpenPhoneRegister }) => {
   const [formData, setFormData] = useState({
@@ -31,23 +32,31 @@ const Contact = ({ onOpenPhoneRegister }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulación de envío (se implementará con backend)
-    setTimeout(() => {
-      toast.success("¡Solicitud Enviada! Nos pondremos en contacto contigo muy pronto.");
-      setIsSubmitting(false);
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await axios.post(`${BACKEND_URL}/api/presupuestos`, formData);
       
-      // Resetear formulario
-      setFormData({
-        nombre: '',
-        email: '',
-        telefono: '',
-        tipoServicio: '',
-        direccion: '',
-        descripcion: '',
-        presupuesto: '',
-        urgencia: 'normal'
-      });
-    }, 1500);
+      if (response.status === 201) {
+        toast.success("¡Solicitud Enviada! Nos pondremos en contacto contigo muy pronto.");
+        
+        // Resetear formulario
+        setFormData({
+          nombre: '',
+          email: '',
+          telefono: '',
+          tipoServicio: '',
+          direccion: '',
+          descripcion: '',
+          presupuesto: '',
+          urgencia: 'normal'
+        });
+      }
+    } catch (error) {
+      console.error('Error al enviar presupuesto:', error);
+      toast.error("Error al enviar la solicitud. Por favor, intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsApp = () => {

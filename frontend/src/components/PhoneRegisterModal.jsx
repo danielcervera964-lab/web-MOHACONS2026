@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Phone, Mail } from 'lucide-react';
 import { toast } from 'sonner';
 import { mockData } from '../data/mock';
+import axios from 'axios';
 
 const PhoneRegisterModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
@@ -12,15 +13,26 @@ const PhoneRegisterModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulación de registro (se implementará con backend)
-    setTimeout(() => {
-      toast.success("¡Registro Completado! Ahora puedes llamarnos directamente.");
-      setIsSubmitting(false);
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await axios.post(`${BACKEND_URL}/api/registros-llamada`, {
+        nombre,
+        email
+      });
       
-      // Cerrar modal y hacer la llamada
-      onClose();
-      window.location.href = `tel:${mockData.company.phone}`;
-    }, 1000);
+      if (response.status === 201) {
+        toast.success("¡Registro Completado! Ahora puedes llamarnos directamente.");
+        
+        // Cerrar modal y hacer la llamada
+        onClose();
+        window.location.href = `tel:${mockData.company.phone}`;
+      }
+    } catch (error) {
+      console.error('Error al registrar:', error);
+      toast.error("Error al registrar. Por favor, intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
