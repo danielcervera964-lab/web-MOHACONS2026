@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -9,7 +10,24 @@ import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import PhoneRegisterModal from "./components/PhoneRegisterModal";
+import AdminPage from "./pages/AdminPage";
 import { Toaster } from "./components/ui/sonner";
+
+// Home Page Component
+const HomePage = ({ onRequestQuote, onOpenPhoneRegister }) => {
+  return (
+    <>
+      <Navbar />
+      <Hero onRequestQuote={onRequestQuote} />
+      <Services />
+      <Portfolio />
+      <About />
+      <Testimonials />
+      <Contact onOpenPhoneRegister={onOpenPhoneRegister} />
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
@@ -23,14 +41,23 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      <Hero onRequestQuote={scrollToContact} />
-      <Services />
-      <Portfolio />
-      <About />
-      <Testimonials />
-      <Contact onOpenPhoneRegister={() => setIsPhoneModalOpen(true)} />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          {/* Public Routes */}
+          <Route 
+            path="/" 
+            element={
+              <HomePage 
+                onRequestQuote={scrollToContact}
+                onOpenPhoneRegister={() => setIsPhoneModalOpen(true)}
+              />
+            } 
+          />
+          
+          {/* Admin Route */}
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </BrowserRouter>
       
       {/* Phone Register Modal */}
       <PhoneRegisterModal 
