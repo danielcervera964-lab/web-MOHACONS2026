@@ -8,7 +8,7 @@ const Hero = ({ onRequestQuote }) => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1744540728562-86db0f7439af?w=1920&q=80"
           alt="Construcción profesional"
           className="w-full h-full object-cover"
         />

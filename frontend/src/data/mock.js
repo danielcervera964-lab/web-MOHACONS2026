@@ -87,44 +87,65 @@ export const mockData = {
     {
       id: 1,
       title: 'Reforma Integral Cocina',
-      description: 'Renovación completa con alicatado y solado de porcelánico',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800',
+      description: 'Renovación completa con encimera de mármol y muebles modernos',
+      image: 'https://images.unsplash.com/photo-1765371514650-1f99696ca69f?w=800',
       category: 'Reformas'
     },
     {
       id: 2,
-      title: 'Construcción de Muro',
-      description: 'Muro de ladrillo visto con acabado profesional',
-      image: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/10jhxf0s_12f7a0c9-4514-492b-b842-bfb19b8ef22e.JPG',
-      category: 'Albañilería'
-    },
-    {
-      id: 3,
-      title: 'Baño Moderno',
-      description: 'Alicatado completo con azulejos de alta calidad',
-      image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800',
+      title: 'Baño Moderno con Azulejos',
+      description: 'Alicatado completo con azulejos contemporáneos y mampara',
+      image: 'https://images.unsplash.com/photo-1638799869566-b17fa794c4de?w=800',
       category: 'Reformas'
     },
     {
-      id: 4,
-      title: 'Fachada Exterior',
-      description: 'Revestimiento de fachada con monocapa',
-      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800',
-      category: 'Exteriores'
-    },
-    {
-      id: 5,
-      title: 'Solado Porcelánico',
-      description: 'Instalación de suelo porcelánico gran formato',
-      image: 'https://images.unsplash.com/photo-1581858726788-75bc0f1a4691?w=800',
+      id: 3,
+      title: 'Solado Geométrico',
+      description: 'Instalación de suelo cerámico con patrón geométrico',
+      image: 'https://images.unsplash.com/photo-1708919268841-27c120c45a92?w=800',
       category: 'Suelos'
     },
     {
-      id: 6,
-      title: 'Obra Industrial',
-      description: 'Tabiquería y cerramientos en nave industrial',
-      image: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/10jhxf0s_12f7a0c9-4514-492b-b842-bfb19b8ef22e.JPG',
+      id: 4,
+      title: 'Muro de Ladrillo Profesional',
+      description: 'Construcción de muro de ladrillo visto con acabado perfecto',
+      image: 'https://images.unsplash.com/photo-1744540728562-86db0f7439af?w=800',
       category: 'Albañilería'
+    },
+    {
+      id: 5,
+      title: 'Baño de Diseño',
+      description: 'Reforma completa con azulejos oscuros y detalles modernos',
+      image: 'https://images.pexels.com/photos/7167064/pexels-photo-7167064.jpeg?w=800',
+      category: 'Reformas'
+    },
+    {
+      id: 6,
+      title: 'Cocina Contemporánea',
+      description: 'Cocina reformada con acabados de madera y encimera de calidad',
+      image: 'https://images.unsplash.com/photo-1765371514211-9b93c204bb81?w=800',
+      category: 'Reformas'
+    },
+    {
+      id: 7,
+      title: 'Suelo de Mármol Hexagonal',
+      description: 'Instalación de baldosas de mármol con diseño hexagonal',
+      image: 'https://images.pexels.com/photos/6175107/pexels-photo-6175107.jpeg?w=800',
+      category: 'Suelos'
+    },
+    {
+      id: 8,
+      title: 'Muro de Ladrillo Rojo',
+      description: 'Construcción tradicional de muro de ladrillo rojo',
+      image: 'https://images.pexels.com/photos/51119/wall-stones-hauswand-structure-51119.jpeg?w=800',
+      category: 'Albañilería'
+    },
+    {
+      id: 9,
+      title: 'Baño Minimalista',
+      description: 'Reforma con mueble flotante y acabados de lujo',
+      image: 'https://images.unsplash.com/photo-1595514534892-a1ce92ee8677?w=800',
+      category: 'Reformas'
     }
   ],
 

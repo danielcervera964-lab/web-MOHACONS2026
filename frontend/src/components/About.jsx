@@ -39,8 +39,8 @@ const About = () => {
           {/* Image */}
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
-              alt="Equipo MOHACONS"
+              src="https://images.pexels.com/photos/36511379/pexels-photo-36511379.jpeg?w=800&q=80"
+              alt="Trabajos MOHACONS"
               className="rounded-lg shadow-2xl"
             />
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-yellow-500 rounded-lg -z-10"></div>
