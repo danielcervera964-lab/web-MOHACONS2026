@@ -18,7 +18,7 @@ const HomePage = ({ onRequestQuote, onOpenPhoneRegister }) => {
   return (
     <>
       <Navbar />
-      <Hero onRequestQuote={onRequestQuote} />
+      <Hero onRequestQuote={onRequestQuote} onOpenPhoneRegister={onOpenPhoneRegister} />
       <Services />
       <Portfolio />
       <About />
@@ -47,10 +47,10 @@ function App() {
           <Route 
             path="/" 
             element={
-              <HomePage 
-                onRequestQuote={scrollToContact}
-                onOpenPhoneRegister={() => setIsPhoneModalOpen(true)}
-              />
+          <HomePage 
+            onRequestQuote={scrollToContact}
+            onOpenPhoneRegister={() => setIsPhoneModalOpen(true)}
+          />
             } 
           />
           

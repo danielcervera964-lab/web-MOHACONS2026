@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { mockData } from '../data/mock';
 
-const Hero = ({ onRequestQuote }) => {
+const Hero = ({ onRequestQuote, onOpenPhoneRegister }) => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Image */}
@@ -55,13 +55,13 @@ const Hero = ({ onRequestQuote }) => {
               Solicitar Presupuesto
               <ArrowRight className="w-5 h-5" />
             </button>
-            <a 
-              href={`tel:${mockData.company.phone}`}
+            <button 
+              onClick={onOpenPhoneRegister}
               className="btn-outline text-lg"
             >
               <Phone className="w-5 h-5" />
               Llamar Ahora
-            </a>
+            </button>
           </div>
 
           {/* Trust indicators */}
