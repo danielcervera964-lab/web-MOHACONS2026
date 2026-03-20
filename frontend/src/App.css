@@ -1,0 +1,245 @@
+/* MOHACONS 2026 - Custom Styles */
+
+:root {
+  /* Brand Colors from Logo */
+  --moha-black: #1a1a1a;
+  --moha-gold: #FFB800;
+  --moha-gold-dark: #CC9300;
+  --moha-gold-light: #FFC933;
+  --moha-silver: #D4D4D4;
+  --moha-white: #FFFFFF;
+  --moha-gray: #888680;
+  --moha-gray-dark: #302f2c;
+  
+  /* Background colors */
+  --bg-dark: #0f0f10;
+  --bg-card: #1f1f1f;
+  
+  /* Warning stripes (like logo) */
+  --warning-yellow: #FFD700;
+  --warning-black: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--moha-black);
+  color: var(--moha-white);
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Headings - Bold and Industrial */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.brand-heading {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+  color: var(--moha-gold);
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+  color: var(--moha-white);
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 2rem;
+}
+
+.section-subheading {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--moha-silver);
+  font-weight: 500;
+  margin-bottom: 3rem;
+  text-transform: none;
+}
+
+/* Buttons */
+.btn-gold {
+  background: var(--moha-gold);
+  color: var(--moha-black);
+  border: none;
+  border-radius: 50px;
+  padding: 1.2em 2.5em;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.5);
+  background: var(--moha-gold-light);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--moha-gold);
+  border: 2px solid var(--moha-gold);
+  border-radius: 50px;
+  padding: 1em 2.5em;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-outline:hover {
+  background: var(--moha-gold);
+  color: var(--moha-black);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.4);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 184, 0, 0.2);
+}
+
+/* Warning stripes effect (like logo) */
+.warning-stripe {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--moha-gold),
+    var(--moha-gold) 10px,
+    var(--moha-black) 10px,
+    var(--moha-black) 20px
+  );
+  height: 8px;
+  width: 100%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section spacing */
+.section {
+  padding: 6rem 0;
+}
+
+/* Text colors */
+.text-gold {
+  color: var(--moha-gold);
+}
+
+.text-silver {
+  color: var(--moha-silver);
+}
+
+/* Background overlays */
+.overlay-dark {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.7));
+}
+
+.overlay-gradient {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(255, 184, 0, 0.1));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .btn-gold,
+  .btn-outline {
+    width: 100%;
+    padding: 1em 1.5em;
+  }
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 3px solid rgba(255, 184, 0, 0.3);
+  border-top-color: var(--moha-gold);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
