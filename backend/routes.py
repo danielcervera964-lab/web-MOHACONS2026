@@ -3,6 +3,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from models import (
     PresupuestoCreate, Presupuesto, 
     RegistroLlamadaCreate, RegistroLlamada,
+    ContactoCreate, Contacto,
     AdminLogin, AdminUser, Token, PresupuestoUpdate
 )
 from auth import verify_password, get_password_hash, create_access_token, decode_token
@@ -70,6 +71,21 @@ async def crear_registro_llamada(registro_data: RegistroLlamadaCreate):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error al guardar registro: {str(e)}"
+        )
+
+@router.post("/contactos", response_model=Contacto, status_code=status.HTTP_201_CREATED)
+async def crear_contacto(contacto_data: ContactoCreate):
+    """Endpoint público para formulario de contacto simple"""
+    contacto = Contacto(**contacto_data.dict())
+    contacto_dict = contacto.dict()
+    
+    try:
+        await db.contactos.insert_one(contacto_dict)
+        return contacto
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error al guardar contacto: {str(e)}"
         )
 
 # ==================== ENDPOINTS ADMIN ====================
@@ -185,12 +201,49 @@ async def obtener_registros_llamada(
     registros = await db.registros_llamada.find().sort("fecha", -1).skip(skip).limit(limit).to_list(limit)
     return [RegistroLlamada(**r) for r in registros]
 
+@router.get("/admin/contactos", response_model=List[Contacto])
+async def obtener_contactos(
+    current_user: str = Depends(get_current_user),
+    skip: int = 0,
+    limit: int = 100,
+    leido: bool = None
+):
+    """Obtener todos los contactos del formulario simple"""
+    query = {}
+    if leido is not None:
+        query['leido'] = leido
+    
+    contactos = await db.contactos.find(query).sort("fecha", -1).skip(skip).limit(limit).to_list(limit)
+    return [Contacto(**c) for c in contactos]
+
+@router.patch("/admin/contactos/{contacto_id}", response_model=Contacto)
+async def marcar_contacto_leido(
+    contacto_id: str,
+    current_user: str = Depends(get_current_user)
+):
+    """Marcar un contacto como leído"""
+    result = await db.contactos.update_one(
+        {"id": contacto_id},
+        {"$set": {"leido": True}}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Contacto no encontrado"
+        )
+    
+    contacto = await db.contactos.find_one({"id": contacto_id})
+    return Contacto(**contacto)
+
 @router.get("/admin/estadisticas")
 async def obtener_estadisticas(current_user: str = Depends(get_current_user)):
     """Obtener estadísticas generales"""
     total_presupuestos = await db.presupuestos.count_documents({})
     presupuestos_no_leidos = await db.presupuestos.count_documents({"leido": False})
     total_registros_llamada = await db.registros_llamada.count_documents({})
+    total_contactos = await db.contactos.count_documents({})
+    contactos_no_leidos = await db.contactos.count_documents({"leido": False})
     
     # Presupuestos por urgencia
     urgencias = await db.presupuestos.aggregate([
@@ -206,6 +259,8 @@ async def obtener_estadisticas(current_user: str = Depends(get_current_user)):
         "total_presupuestos": total_presupuestos,
         "presupuestos_no_leidos": presupuestos_no_leidos,
         "total_registros_llamada": total_registros_llamada,
+        "total_contactos": total_contactos,
+        "contactos_no_leidos": contactos_no_leidos,
         "por_urgencia": {item['_id']: item['count'] for item in urgencias},
         "por_servicio": {item['_id']: item['count'] for item in servicios}
     }

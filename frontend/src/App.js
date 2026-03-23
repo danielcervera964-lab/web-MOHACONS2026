@@ -7,7 +7,7 @@ import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
+import SimpleContactForm from "./components/SimpleContactForm";
 import Footer from "./components/Footer";
 import PhoneRegisterModal from "./components/PhoneRegisterModal";
 import AdminPage from "./pages/AdminPage";
@@ -23,7 +23,7 @@ const HomePage = ({ onRequestQuote, onOpenPhoneRegister }) => {
       <Portfolio />
       <About />
       <Testimonials />
-      <Contact onOpenPhoneRegister={onOpenPhoneRegister} />
+      <SimpleContactForm />
       <Footer />
     </>
   );

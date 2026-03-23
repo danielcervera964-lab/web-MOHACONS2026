@@ -36,14 +36,17 @@ const About = () => {
             </div>
           </div>
 
-          {/* Image */}
+          {/* Owner Photo */}
           <div className="relative">
             <img 
-              src="https://images.pexels.com/photos/36511379/pexels-photo-36511379.jpeg?w=800&q=80"
-              alt="Trabajos MOHACONS"
-              className="rounded-lg shadow-2xl"
+              src={mockData.company.ownerPhoto}
+              alt={mockData.company.ownerName}
+              className="rounded-lg shadow-2xl w-full"
             />
-            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-yellow-500 rounded-lg -z-10"></div>
+            <div className="absolute -bottom-6 -left-6 bg-yellow-500 text-black px-6 py-4 rounded-lg shadow-xl">
+              <p className="font-black text-xl uppercase">{mockData.company.ownerName}</p>
+              <p className="text-sm font-bold">{mockData.company.ownerTitle}</p>
+            </div>
           </div>
         </div>
 

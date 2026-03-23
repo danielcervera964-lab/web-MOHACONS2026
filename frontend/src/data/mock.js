@@ -7,8 +7,11 @@ export const mockData = {
     phone: '624672182',
     phoneFormatted: '624 67 21 82',
     whatsapp: '34624672182', // Incluir código país para WhatsApp
-    email: 'info@mohacons.com',
-    logo: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/6v19d988_1f07a31d-f777-4af3-8269-c3d39daafdca.JPG'
+    email: 'Allalimoha560@gmail.com',
+    logo: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/6v19d988_1f07a31d-f777-4af3-8269-c3d39daafdca.JPG',
+    ownerPhoto: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/5qobpb7v_image.png',
+    ownerName: 'Mohamed Allali',
+    ownerTitle: 'Director y Fundador'
   },
   
   services: [

@@ -226,3 +226,48 @@ https://reforma-profesional.preview.emergentagent.com/admin
 **Estado Final:** 🎉 SISTEMA PROFESIONAL COMPLETO Y OPERATIVO
 
 La web está lista para recibir clientes reales. Todos los presupuestos y llamadas se guardan en la base de datos y son accesibles desde el panel de administración.
+
+---
+
+## Actualización 20/03/2026 - Personalizaciones Finales
+
+### ✅ Cambios Implementados
+
+1. **Email Corporativo Actualizado**
+   - Email: Allalimoha560@gmail.com
+   - Visible en footer y tarjetas de contacto
+   - Actualizado en toda la aplicación
+
+2. **Foto del Propietario Añadida**
+   - Ubicación: Sección "Sobre Nosotros"
+   - Nombre: Mohamed Allali
+   - Título: Director y Fundador
+   - Foto profesional en oficina con logo MOHACONS
+   - Tarjeta con nombre y título superpuesta
+
+3. **Formulario de Contacto Simplificado**
+   - Reemplazado el formulario detallado por uno simple
+   - Campos: Nombre, Email, Teléfono, Servicio
+   - Conectado a backend (colección: contactos)
+   - API: POST /api/contactos
+   - Panel admin con nueva sección para ver contactos
+
+4. **Panel Admin Actualizado**
+   - Nueva pestaña para contactos simples
+   - GET /api/admin/contactos
+   - Marcar contactos como leídos
+   - Estadísticas actualizadas con total de contactos
+
+### 📊 Colecciones MongoDB
+- `presupuestos` - Solicitudes de presupuesto detalladas (formulario completo)
+- `registros_llamada` - Registros de intención de llamada
+- `contactos` - Formulario de contacto simple (NUEVO)
+- `admin_users` - Usuarios administradores
+
+### 🎯 Beneficios de Cercanía
+La foto del propietario genera:
+- Mayor confianza y credibilidad
+- Conexión personal con clientes potenciales
+- Diferenciación de la competencia
+- Imagen profesional y seria
+
