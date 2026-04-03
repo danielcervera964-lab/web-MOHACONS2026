@@ -5,7 +5,7 @@ from jose import JWTError, jwt
 import os
 
 # Configuración de seguridad
-SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'mohacons-secret-key-2026-super-secure-change-in-production')
+SECRET_KEY = os.environ['JWT_SECRET_KEY']  # No fallback for security
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 480  # 8 horas
 
