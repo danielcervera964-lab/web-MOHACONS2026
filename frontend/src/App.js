@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -9,16 +9,15 @@ import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import SimpleContactForm from "./components/SimpleContactForm";
 import Footer from "./components/Footer";
-import PhoneRegisterModal from "./components/PhoneRegisterModal";
 import AdminPage from "./pages/AdminPage";
 import { Toaster } from "./components/ui/sonner";
 
 // Home Page Component
-const HomePage = ({ onRequestQuote, onOpenPhoneRegister }) => {
+const HomePage = ({ onRequestQuote }) => {
   return (
     <>
       <Navbar />
-      <Hero onRequestQuote={onRequestQuote} onOpenPhoneRegister={onOpenPhoneRegister} />
+      <Hero onRequestQuote={onRequestQuote} />
       <Services />
       <Portfolio />
       <About />
@@ -30,8 +29,6 @@ const HomePage = ({ onRequestQuote, onOpenPhoneRegister }) => {
 };
 
 function App() {
-  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
-
   const scrollToContact = () => {
     const contactSection = document.querySelector('#contacto');
     if (contactSection) {
@@ -49,7 +46,6 @@ function App() {
             element={
           <HomePage 
             onRequestQuote={scrollToContact}
-            onOpenPhoneRegister={() => setIsPhoneModalOpen(true)}
           />
             } 
           />
@@ -58,12 +54,6 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </BrowserRouter>
-      
-      {/* Phone Register Modal */}
-      <PhoneRegisterModal 
-        isOpen={isPhoneModalOpen}
-        onClose={() => setIsPhoneModalOpen(false)}
-      />
 
       {/* Toast Notifications */}
       <Toaster />

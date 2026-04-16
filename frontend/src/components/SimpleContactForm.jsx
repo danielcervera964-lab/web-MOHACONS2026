@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Send, Mail, Phone, User, Wrench } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { toast } from 'sonner';
-import axios from 'axios';
 
 const SimpleContactForm = () => {
   const [formData, setFormData] = useState({
@@ -29,10 +28,18 @@ const SimpleContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-      const response = await axios.post(`${BACKEND_URL}/api/contactos`, formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          tipo: 'contacto'
+        })
+      });
       
-      if (response.status === 201) {
+      const data = await response.json();
+      
+      if (response.ok) {
         toast.success("¡Mensaje Enviado! Te contactaremos pronto.");
         
         // Resetear formulario
@@ -42,6 +49,8 @@ const SimpleContactForm = () => {
           telefono: '',
           servicio: ''
         });
+      } else {
+        throw new Error(data.error || 'Error al enviar');
       }
     } catch (error) {
       console.error('Error al enviar contacto:', error);

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, MessageSquare, Send } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { toast } from 'sonner';
-import axios from 'axios';
 
-const Contact = ({ onOpenPhoneRegister }) => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -33,10 +32,18 @@ const Contact = ({ onOpenPhoneRegister }) => {
     setIsSubmitting(true);
 
     try {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-      const response = await axios.post(`${BACKEND_URL}/api/presupuestos`, formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          tipo: 'presupuesto'
+        })
+      });
       
-      if (response.status === 201) {
+      const data = await response.json();
+      
+      if (response.ok) {
         toast.success("¡Solicitud Enviada! Nos pondremos en contacto contigo muy pronto.");
         
         // Resetear formulario
@@ -50,6 +57,8 @@ const Contact = ({ onOpenPhoneRegister }) => {
           presupuesto: '',
           urgencia: 'normal'
         });
+      } else {
+        throw new Error(data.error || 'Error al enviar');
       }
     } catch (error) {
       console.error('Error al enviar presupuesto:', error);
@@ -84,17 +93,13 @@ const Contact = ({ onOpenPhoneRegister }) => {
               <h3 className="text-2xl font-black mb-2 uppercase">Llámanos</h3>
               <p className="mb-4">Atención personalizada</p>
               <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenPhoneRegister();
-                }}
+                href={`tel:${mockData.company.phone}`}
                 className="text-3xl font-black hover:underline block"
               >
                 {mockData.company.phoneFormatted}
               </a>
               <p className="text-sm mt-2 opacity-80">
-                * Se requiere registro para llamar
+                Lunes a Viernes: 8:00 - 18:00
               </p>
             </div>
 
