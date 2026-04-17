@@ -23,24 +23,26 @@ const SimpleContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          tipo: 'contacto'
-        })
-      });
+      // Formatear mensaje para WhatsApp
+      const rawMessage = `*NUEVA SOLICITUD DESDE LA WEB* 🚧\n\n` +
+        `👤 *Nombre:* ${formData.nombre}\n` +
+        `📧 *Email:* ${formData.email}\n` +
+        `📞 *Teléfono:* ${formData.telefono}\n` +
+        `🔧 *Servicio de Interés:* ${formData.servicio}\n\n` +
+        `Hola, me gustaría recibir más información.`;
+        
+      const encodedMessage = encodeURIComponent(rawMessage);
+      const waUrl = `https://wa.me/${mockData.company.whatsapp}?text=${encodedMessage}`;
       
-      const data = await response.json();
-      
-      if (response.ok) {
-        toast.success("¡Mensaje Enviado! Te contactaremos pronto.");
+      // Pequeño delay narrativo para UX
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+        toast.success("¡Redirigiendo a WhatsApp!");
         
         // Resetear formulario
         setFormData({
@@ -49,13 +51,12 @@ const SimpleContactForm = () => {
           telefono: '',
           servicio: ''
         });
-      } else {
-        throw new Error(data.error || 'Error al enviar');
-      }
+        setIsSubmitting(false);
+      }, 600);
+      
     } catch (error) {
-      console.error('Error al enviar contacto:', error);
-      toast.error("Error al enviar el mensaje. Por favor, intenta de nuevo.");
-    } finally {
+      console.error('Error al redirigir:', error);
+      toast.error("Error al conectar con WhatsApp.");
       setIsSubmitting(false);
     }
   };

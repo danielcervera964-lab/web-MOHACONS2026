@@ -3,6 +3,7 @@ import { mockData } from '../data/mock';
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('Todos');
+  const [selectedImage, setSelectedImage] = useState(null);
   
   const categories = ['Todos', ...new Set(mockData.portfolio.map(item => item.category))];
   
@@ -17,7 +18,7 @@ const Portfolio = () => {
         <div className="text-center mb-12">
           <h2 className="section-heading">Trabajos Realizados</h2>
           <p className="section-subheading max-w-3xl mx-auto">
-            Descubre algunos de nuestros proyectos completados con éxito
+            Descubre algunos de nuestros proyectos completados con éxito. Haz clic en las imágenes para verlas en detalle.
           </p>
         </div>
 
@@ -43,8 +44,9 @@ const Portfolio = () => {
           {filteredPortfolio.map((project, index) => (
             <div 
               key={project.id}
-              className="group relative overflow-hidden rounded-lg card-hover bg-gray-900"
+              className="group relative overflow-hidden rounded-lg card-hover bg-gray-900 cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => setSelectedImage(project)}
             >
               {/* Image */}
               <div className="aspect-[4/3] overflow-hidden">
@@ -84,6 +86,37 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm cursor-pointer"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-5xl w-full flex flex-col items-center justify-center animate-in fade-in zoom-in duration-300">
+            <button 
+              className="absolute -top-12 right-0 text-white hover:text-yellow-500 transition-colors"
+              onClick={() => setSelectedImage(null)}
+              aria-label="Cerrar imagen"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <img 
+              src={selectedImage.image} 
+              alt={selectedImage.title} 
+              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+            />
+            <div className="mt-6 text-center max-w-2xl">
+              <span className="text-yellow-500 text-sm font-bold uppercase block mb-1">
+                {selectedImage.category}
+              </span>
+              <h3 className="text-2xl font-bold text-white uppercase">{selectedImage.title}</h3>
+              <p className="text-gray-300 mt-2 text-lg">{selectedImage.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
