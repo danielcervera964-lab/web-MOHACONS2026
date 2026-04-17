@@ -9,7 +9,7 @@ const FloatingWhatsApp = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center group">
       {/* Tooltip hint above the button (bouncing to draw attention) */}
       <div className="relative bg-white text-black text-xs font-bold px-3 py-1 rounded-lg shadow-lg mb-2 animate-bounce cursor-pointer opacity-90 hover:opacity-100">
-        ¡Cotiza por WhatsApp!
+        Contáctanos
         {/* Little triangle pointing down */}
         <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rotate-45"></div>
       </div>
