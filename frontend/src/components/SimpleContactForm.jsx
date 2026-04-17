@@ -61,7 +61,7 @@ const SimpleContactForm = () => {
   };
 
   return (
-    <section className="section bg-gradient-to-b from-black to-gray-900">
+    <section id="contacto" className="section bg-gradient-to-b from-black to-gray-900">
       <div className="container">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
