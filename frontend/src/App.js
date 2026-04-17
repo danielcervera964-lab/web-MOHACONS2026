@@ -11,6 +11,7 @@ import SimpleContactForm from "./components/SimpleContactForm";
 import Footer from "./components/Footer";
 import AdminPage from "./pages/AdminPage";
 import { Toaster } from "./components/ui/sonner";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 // Home Page Component
 const HomePage = ({ onRequestQuote }) => {
@@ -57,6 +58,7 @@ function App() {
 
       {/* Toast Notifications */}
       <Toaster />
+      <FloatingWhatsApp />
     </div>
   );
 }
