@@ -9,7 +9,7 @@ export const mockData = {
     whatsapp: '34624672182', // Incluir código país para WhatsApp
     email: 'Allalimoha560@gmail.com',
     logo: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/6v19d988_1f07a31d-f777-4af3-8269-c3d39daafdca.JPG',
-    ownerPhoto: 'https://customer-assets.emergentagent.com/job_reforma-profesional/artifacts/5qobpb7v_image.png',
+    ownerPhoto: 'https://images.unsplash.com/photo-1504307651254-35680f356f27?w=1000&q=80',
     ownerName: 'Mohamed Allali',
     ownerTitle: 'Director y Fundador'
   },
